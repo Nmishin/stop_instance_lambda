@@ -8,9 +8,7 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    # Use the filter() method of the instances collection to retrieve
-    # all running EC2 instances.
-    #define the connection
+    # Define the connection
     ec2 = boto3.resource('ec2')
 
     # Get and parse SNS message
@@ -22,7 +20,7 @@ def lambda_handler(event, context):
     # Convert it to the list
     list_id = [id]
     
-    instance = ec2.Instance(id=str(list_id))
+    instance = ec2.Instance(id=str(id))
     
     # Create filter for instance tags
     filters  = {u'Value': 'YES', u'Key': 'Can_be_terminated'}
